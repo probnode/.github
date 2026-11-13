@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://probnode.com"><img src="https://raw.githubusercontent.com/probnode/.github/main/profile/assets/banner.png?v=2" alt="ProbNode - Polymarket historical data, every change of the book" width="100%"></a>
+  <a href="https://probnode.com"><img src="https://raw.githubusercontent.com/probnode/.github/main/profile/assets/banner.png?v=3" alt="ProbNode - Polymarket historical data, every change of the book" width="100%"></a>
 </p>
 
 <p align="center">
