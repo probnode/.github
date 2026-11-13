@@ -59,6 +59,8 @@ AI agents can use the same data through the MCP server: `pip install probnode-mc
 | | |
 |---|---|
 | [**probnode-sdk**](https://github.com/probnode/probnode-sdk) | The official Python client and CLI (`probnode-sdk` on PyPI) and the MCP server (`probnode-mcp`). MIT |
+| [**probnode-rs**](https://github.com/probnode/probnode-rs) | The official Rust client: async and blocking, typed models, sha256-checked downloads, and Probe files read through `probe-format`. Apache-2.0 |
+| [**probnode-cpp**](https://github.com/probnode/probnode-cpp) | The official C++ client: C++17, CMake (`find_package(probnode)`), sha256-checked downloads. Apache-2.0 |
 | [**probe**](https://github.com/probnode/probe) | Probe, our lossless order-book file format: the specification, conformance vectors, and the reference Rust library, `probe` CLI and Python package. Apache-2.0 |
 
 ## Contact
