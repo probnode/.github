@@ -1,33 +1,67 @@
-<img src="assets/probnode-logo-round.svg" alt="ProbNode" width="64" height="64" align="left">
+<p align="center">
+  <a href="https://probnode.com"><img src="assets/banner.svg" alt="ProbNode - Polymarket tick data, as files you can verify" width="100%"></a>
+</p>
 
-**ProbNode** records Polymarket's order books and trades, every market and every change of the
-book, and delivers them as parquet and csv files with a sha256 for every file, alongside a public
-record of what was captured.
+<p align="center">
+  <a href="https://probnode.com/docs"><b>Docs</b></a> ·
+  <a href="https://probnode.com/docs/schemas"><b>Schemas</b></a> ·
+  <a href="https://probnode.com/catalog"><b>Catalog</b></a> ·
+  <a href="https://probnode.com/pricing"><b>Pricing</b></a> ·
+  <a href="https://probnode.com/openapi.json"><b>OpenAPI</b></a> ·
+  <a href="https://pypi.org/project/probnode-sdk/"><b>PyPI</b></a>
+</p>
 
-<br clear="left">
+## About ProbNode
 
-## About
+ProbNode records Polymarket at full depth: every change of every price level of every outcome
+token, every trade, and every on-chain fill with the wallets on both sides. Nothing is sampled or
+throttled. Each event carries two clocks: our receive time at microsecond resolution, and the
+venue's own time.
 
-- **Data:** the full order book (every change of every price level), every trade, the market
-  definitions, and the feed-gap journal for each hour.
-- **Coverage you can check:** for every outcome token and UTC hour, the milliseconds recorded, the
-  gaps and the uptime, free and without a key.
-- **Clients:** a Python SDK and command line, and an MCP server for AI agents, all open source
-  under the MIT license.
+Every hour is checked before it is sold. Every file comes with a sha256, and for every token and
+hour there is a public record of what was captured and what was missed. The coverage is free to
+check and needs no key.
 
-## Resources
+<p align="center">
+  <a href="https://probnode.com/docs/schemas"><img src="assets/schemas.svg" alt="The 18 ProbNode schemas, from L3 fills to L0 bars" width="88%"></a>
+</p>
+
+## What you get
 
 | | |
 |---|---|
-| Documentation | https://probnode.com/docs |
-| API reference (OpenAPI 3.1) | https://probnode.com/openapi.json |
-| Help centre | https://probnode.com/help |
-| Plans and pricing | https://probnode.com/pricing |
-| Python SDK and CLI | [probnode-sdk](https://github.com/probnode/probnode-sdk) · `pip install probnode-sdk` |
-| MCP server | [probnode-mcp](https://github.com/probnode/probnode-sdk/tree/main/packages/probnode-mcp) · `pip install probnode-mcp` |
+| **Full book** | Every level change and every trade of a market, at full depth, from the recorder's lossless event log |
+| **Who traded** | `fills`: every Polymarket `OrderFilled` from our own Polygon node, with maker and taker, joined to the trades |
+| **Ready to analyse** | Top of book at 1 s and 1 m, trade-quotes, OHLCV bars from 1 s to 1 d, daily market statistics |
+| **Formats** | Parquet and csv.gz per market and UTC day, or whole hours, each with a sha256 |
+| **Coverage you can check** | Per token and hour: milliseconds recorded, gaps and their reasons, and the recorder clock's accuracy |
+
+## Quick start
+
+```bash
+pip install probnode-sdk
+probnode login
+probnode export will-x-happen 2026-11-12 --format parquet   # one market, one UTC day, full book
+```
+
+```python
+import probnode, pandas as pd
+
+client = probnode.Client()
+path = client.export_book("will-x-happen", "2026-11-12")   # downloaded and sha256-checked
+book = pd.read_parquet(path)
+```
+
+AI agents can use the same data through the MCP server: `pip install probnode-mcp`.
+
+## Repositories
+
+| | |
+|---|---|
+| [**probnode-sdk**](https://github.com/probnode/probnode-sdk) | The official Python client and CLI (`probnode-sdk` on PyPI) and the MCP server (`probnode-mcp`). MIT |
 
 ## Contact
 
-- Email: hello@probnode.com
-- Web: https://probnode.com
-- Security issues: please report privately, see the [security policy](https://github.com/probnode/probnode-sdk/blob/main/SECURITY.md).
+- Email: [hello@probnode.com](mailto:hello@probnode.com)
+- Web: [probnode.com](https://probnode.com) · [Help centre](https://probnode.com/help)
+- Security issues: please report them privately; see the [security policy](https://github.com/probnode/probnode-sdk/blob/main/SECURITY.md).
