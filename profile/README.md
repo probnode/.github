@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://probnode.com"><img src="assets/banner.svg" alt="ProbNode - Polymarket tick data, as files you can verify" width="100%"></a>
+  <a href="https://probnode.com"><img src="https://raw.githubusercontent.com/probnode/.github/main/profile/assets/banner.png" alt="ProbNode - Polymarket tick data, as files you can verify" width="100%"></a>
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@ hour there is a public record of what was captured and what was missed. The cove
 check and needs no key.
 
 <p align="center">
-  <a href="https://probnode.com/docs/schemas"><img src="assets/schemas.svg" alt="The 18 ProbNode schemas, from L3 fills to L0 bars" width="88%"></a>
+  <a href="https://probnode.com/docs/schemas"><img src="https://raw.githubusercontent.com/probnode/.github/main/profile/assets/schemas.png" alt="The 18 ProbNode schemas, from L3 fills to L0 bars" width="88%"></a>
 </p>
 
 ## What you get
