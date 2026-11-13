@@ -81,5 +81,7 @@ On Rust, run `cargo add probnode`. On C++, use `find_package(probnode)`. AI agen
 Do you have a question, need a dataset, or want a trial for your team? Write to
 [hello@probnode.com](mailto:hello@probnode.com).
 
+We post releases and coverage updates on X: [@probnode](https://x.com/probnode).
+
 Please report security issues privately, as described in our
 [security policy](https://github.com/probnode/probnode-sdk/blob/main/SECURITY.md).
