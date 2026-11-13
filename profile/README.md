@@ -3,40 +3,45 @@
 </p>
 
 <p align="center">
+  <a href="https://probnode.com/login"><b>Get a free API key</b></a> ·
   <a href="https://probnode.com/docs"><b>Docs</b></a> ·
-  <a href="https://probnode.com/docs/schemas"><b>Schemas</b></a> ·
   <a href="https://probnode.com/catalog"><b>Catalog</b></a> ·
   <a href="https://probnode.com/pricing"><b>Pricing</b></a> ·
-  <a href="https://probnode.com/openapi.json"><b>OpenAPI</b></a> ·
-  <a href="https://pypi.org/project/probnode-sdk/"><b>PyPI</b></a>
+  <a href="https://probnode.com/openapi.json"><b>OpenAPI</b></a>
 </p>
 
 ## About ProbNode
 
-ProbNode records Polymarket at full depth: every change of every price level of every outcome
-token, every trade, and every on-chain fill with the wallets on both sides. Nothing is sampled or
-throttled. Each event carries two clocks: our receive time at microsecond resolution, and the
-venue's own time.
+**Polymarket historical data, every change of the book.**
 
-Every hour is checked before it is sold. Every file comes with a sha256, and for every token and
-hour there is a public record of what was captured and what was missed. The coverage is free to
-check and needs no key.
+We record every price level of every outcome token, every trade, and every on-chain fill with the
+wallets on both sides. Nothing is sampled, nothing is throttled, and every row carries both
+clocks: the venue's own time and our receive time.
+
+Know what you are buying before you pay. Our coverage ledger is public. For every token and UTC
+hour it shows the milliseconds we recorded and every gap, and you can read it free, without a key.
+Every file ships with a sha256.
+
+One flat price per plan. No row meter, no surprise invoice. Start on the Free plan today.
 
 <p align="center">
   <a href="https://probnode.com/docs/schemas"><img src="https://raw.githubusercontent.com/probnode/.github/main/profile/assets/schemas.png?v=2" alt="The 18 ProbNode schemas, from L3 fills to L0 bars" width="100%"></a>
 </p>
 
-## What you get
+## Why ProbNode
 
-| | |
-|---|---|
-| **Full book** | Every level change and every trade of a market, at full depth, from the recorder's lossless event log |
-| **Who traded** | `fills`: every Polymarket `OrderFilled` from our own Polygon node, with maker and taker, joined to the trades |
-| **Ready to analyse** | Top of book at 1 s and 1 m, trade-quotes, OHLCV bars from 1 s to 1 d, daily market statistics |
-| **Formats** | Parquet and csv.gz per market and UTC day, or whole hours, each with a sha256 |
-| **Coverage you can check** | Per token and hour: milliseconds recorded, gaps and their reasons, and the recorder clock's accuracy |
+- **The book itself.** It is not a candle drawn afterwards. You see what was resting on the other
+  side at the exact moment you would have traded, at full depth.
+- **Who traded.** We read every `OrderFilled` from our own Polygon node, with maker and taker,
+  joined to the trades.
+- **18 schemas, one source.** They range from raw L3 fills to top of book, trade-quotes and OHLCV
+  bars from 1 s to 1 d, all built from the same lossless recording.
+- **Fresh every hour.** Each closed hour is checked, then published. It arrives as Parquet,
+  csv.gz or our lossless Probe format.
+- **Built for code and for agents.** We publish official clients for Python, Rust and C++, a CLI
+  and an MCP server.
 
-## Quick start
+## Start in a minute
 
 ```bash
 pip install probnode-sdk
@@ -48,23 +53,33 @@ probnode export will-x-happen 2026-11-12 --format parquet   # one market, one UT
 import probnode, pandas as pd
 
 client = probnode.Client()
-path = client.export_book("will-x-happen", "2026-11-12")   # downloaded and sha256-checked
-book = pd.read_parquet(path)
+book = pd.read_parquet(client.export_book("will-x-happen", "2026-11-12"))  # sha256-checked
 ```
 
-AI agents can use the same data through the MCP server: `pip install probnode-mcp`.
+On Rust, run `cargo add probnode`. On C++, use `find_package(probnode)`. AI agents can use
+`pip install probnode-mcp`.
 
-## Repositories
+## Resources
+
+- [Documentation](https://probnode.com/docs): the quick start, the API reference, every schema
+  column by column, and examples.
+- [Catalog and coverage ledger](https://probnode.com/catalog): every market we hold, hour by hour,
+  free to browse.
+- [Help centre](https://probnode.com/help): answers to the questions buyers ask before the invoice.
+
+## Open source
 
 | | |
 |---|---|
-| [**probnode-sdk**](https://github.com/probnode/probnode-sdk) | The official Python client and CLI (`probnode-sdk` on PyPI) and the MCP server (`probnode-mcp`). MIT |
-| [**probnode-rs**](https://github.com/probnode/probnode-rs) | The official Rust client: async and blocking, typed models, sha256-checked downloads, and Probe files read through `probe-format`. Apache-2.0 |
-| [**probnode-cpp**](https://github.com/probnode/probnode-cpp) | The official C++ client: C++17, CMake (`find_package(probnode)`), sha256-checked downloads. Apache-2.0 |
-| [**probe**](https://github.com/probnode/probe) | Probe, our lossless order-book file format: the specification, conformance vectors, and the reference Rust library, `probe` CLI and Python package. Apache-2.0 |
+| [**probnode-sdk**](https://github.com/probnode/probnode-sdk) | The official Python client, the CLI and the MCP server. MIT |
+| [**probnode-rs**](https://github.com/probnode/probnode-rs) | The official Rust client. It is async and blocking, with typed models and sha256-checked downloads. Apache-2.0 |
+| [**probnode-cpp**](https://github.com/probnode/probnode-cpp) | The official C++ client: C++17, CMake, sha256-checked downloads. Apache-2.0 |
+| [**probe**](https://github.com/probnode/probe) | Probe is our lossless order-book file format. This repository has the specification, conformance vectors, and the Rust and Python readers. Apache-2.0 |
 
 ## Contact
 
-- Email: [hello@probnode.com](mailto:hello@probnode.com)
-- Web: [probnode.com](https://probnode.com) · [Help centre](https://probnode.com/help)
-- Security issues: please report them privately; see the [security policy](https://github.com/probnode/probnode-sdk/blob/main/SECURITY.md).
+Do you have a question, need a dataset, or want a trial for your team? Write to
+[hello@probnode.com](mailto:hello@probnode.com).
+
+Please report security issues privately, as described in our
+[security policy](https://github.com/probnode/probnode-sdk/blob/main/SECURITY.md).
